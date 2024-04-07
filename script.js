@@ -55,39 +55,39 @@
 // Метод getTotalPrice() - возвращает общую стоимость заказа, основанную на ценах продуктов.
 
 // Пример использования класса
-class Product {
-constructor(name, price) {
-this.name = name;
-this.price = price;
-}
-}
+// class Product {
+// constructor(name, price) {
+// this.name = name;
+// this.price = price;
+// }
+// }
 
-class Order {
-    constructor(orderNumber) {
-        this.orderNumber = orderNumber;
-        this.products = [];
-    }
-    addProduct(product) {
-        this.products.push(product);
-    }
-    getTotalPrice() {
-        let totalPrice = 0;
-        for (let i = 0; i < this.products.length; i++) {
-            totalPrice += this.products[i].price;
-        }
-        return totalPrice;
-    }
-}
+// class Order {
+//     constructor(orderNumber) {
+//         this.orderNumber = orderNumber;
+//         this.products = [];
+//     }
+//     addProduct(product) {
+//         this.products.push(product);
+//     }
+//     getTotalPrice() {
+//         let totalPrice = 0;
+//         for (let i = 0; i < this.products.length; i++) {
+//             totalPrice += this.products[i].price;
+//         }
+//         return totalPrice;
+//     }
+// }
 
-const order = new Order(12345);
+// const order = new Order(12345);
 
-const product1 = new Product("Phone", 500);
-order.addProduct(product1);
+// const product1 = new Product("Phone", 500);
+// order.addProduct(product1);
 
-const product2 = new Product("Headphones", 100);
-order.addProduct(product2);
+// const product2 = new Product("Headphones", 100);
+// order.addProduct(product2);
 
-console.log(order.getTotalPrice()); // Вывод: 600
+// console.log(order.getTotalPrice()); // Вывод: 600
 
 // Необязательная задача
 
@@ -110,3 +110,39 @@ console.log(order.getTotalPrice()); // Вывод: 600
 
 // Ваша задача: реализовать класс ZooAnimal с указанными характеристиками.
 //  Убедитесь, что вы используете приватные поля и статическое поле в соответствии с описанием.
+
+class ZooAnimal {
+    #name;
+    #age;
+    #gender;
+    static #MAX_AGE = 100;
+    constructor(name, age, gender) {
+        this.#name = name;
+        if (age > ZooAnimal.#MAX_AGE) {
+            throw new Error(`Возраст животного (${age}) слишком большой`);
+        }
+        this.#age = age;
+        this.#gender = gender;
+    }
+    changeName(newName) {
+        this.#name = newName;
+    }
+    changeAge(newAge) {
+        if (newAge > ZooAnimal.#MAX_AGE) {
+            throw new Error(`Возраст животного (${age}) слишком большой`);
+        } else if (newAge < 0) {
+            throw new Error(`Возраст животного не может быть меньше 0`);
+        }
+        this.#age = newAge;
+    }
+}
+
+const firstAnimal = new ZooAnimal('Бобик', 5, 'M');
+console.log(firstAnimal);
+// console.log(firstAnimal.#name); не сработает тк поле name приватное
+firstAnimal.changeAge(10);
+console.log(firstAnimal);
+// firstAnimal.changeAge(-5);
+// firstAnimal.changeAge(500);
+// const secondAnimal = new ZooAnimal('Шарик', 500, 'M');
+
